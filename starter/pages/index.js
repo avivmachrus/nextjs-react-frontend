@@ -16,8 +16,15 @@ export default function Home() {
 
         <p className="description">
           Get started by editing <code>pages/index.js</code>
-          or visit <Link href="./about">About</Link> page
         </p>
+
+        <h3 className="goto-about">
+          or visit{" "}
+          <Link href="./about">
+            <a>About</a>
+          </Link>{" "}
+          page
+        </h3>
 
         <div className="grid">
           <a href="https://nextjs.org/docs" className="card">
@@ -62,6 +69,14 @@ export default function Home() {
       </footer>
 
       <style jsx>{`
+        .goto-about a {
+          color: blue;
+          cursor: pointer;
+          text-decoration: underline;
+        }
+        .goto-about a:active {
+          color: red;
+        }
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
