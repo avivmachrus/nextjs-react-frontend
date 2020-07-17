@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { makeStyle } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
-import MobileHeader from "../../../mobile/components/Header";
+import MobileHeader from "@mobile/components/Header";
 
-const useStyle = makeStyle({
+const useStyle = makeStyles({
   content: {
     marginTop: 74,
   },

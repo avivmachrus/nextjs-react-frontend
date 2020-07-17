@@ -1,15 +1,16 @@
+import React from "react";
+import Layout from "@common/components/Layout";
+
 const HomePage = ({ products }) => {
   const { list } = products;
   return (
-    <div>
-      {list.map((list) => {
-        return (
-          <div>
-            <p>{list.name}</p>
-          </div>
-        );
-      })}
-    </div>
+    <Layout>
+      <div>
+        {list.map((list) => {
+          return <p>{list.name}</p>;
+        })}
+      </div>
+    </Layout>
   );
 };
 
