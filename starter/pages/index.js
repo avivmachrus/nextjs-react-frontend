@@ -1,8 +1,16 @@
-const { func } = require("prop-types");
-
-const HomePage = (props) => {
-  console.log("props =>", props.products);
-  return <h1></h1>;
+const HomePage = ({ products }) => {
+  const { list } = products;
+  return (
+    <div>
+      {list.map((list) => {
+        return (
+          <div>
+            <p>{list.name}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export async function getStaticProps() {
