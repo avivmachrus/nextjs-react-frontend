@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
@@ -16,7 +16,8 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import ProductRating from "@common/components/ProductRating";
 import { currencyFormatter } from "@utils/currency";
-import { useState } from "react";
+
+import PromoCard from "@common/components/PromoCard";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -182,6 +183,7 @@ const ProductDetailCard = ({
           </CardContent>
         </Collapse>
       </Card>
+      <PromoCard promo={promo} />
     </div>
   );
 };
