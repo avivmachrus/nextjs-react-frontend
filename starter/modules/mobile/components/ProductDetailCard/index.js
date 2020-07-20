@@ -16,6 +16,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
 import ProductRating from "@common/components/ProductRating";
 import { currencyFormatter } from "@utils/currency";
+import { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -27,6 +28,15 @@ const useStyles = makeStyles((theme) => ({
   },
   productInfo: {
     marginTop: theme.spacing(2),
+  },
+  expand: {
+    transform: "rotate(0deg)",
+    transition: theme.transitions.create("transform", {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: "rotate(180deg)",
   },
 }));
 
@@ -43,27 +53,36 @@ const ProductDetailCard = ({
   promo,
 }) => {
   const classes = useStyles();
+  const [expanded, setExpanded] = useState(true);
+
+  const handleExpandClick = () => setExpanded(!expanded);
+
   return (
     <div className={classes.container}>
       <Card>
         <CardMedia className={classes.media} image={img} title={title} />
         <CardContent>
+          {/* title item */}
           <Typography variant="h5" component="h1" gutterBottom>
             {title}
           </Typography>
 
+          {/* product rating & price container */}
           <Grid container spacing={1}>
+            {/* price item */}
             <Grid item xs={6} sm={6}>
               <Typography variant="button" color="secondary">
                 {currencyFormatter(price)}
               </Typography>
             </Grid>
 
+            {/* rating and sold item */}
             <Grid item xs={6} sm={6}>
               <ProductRating rating={rating} sold={sold} alignRight />
             </Grid>
           </Grid>
 
+          {/* product info container */}
           <Grid container spacing={1} className={classes.productInfo}>
             {/* weight item */}
             <Grid
@@ -134,6 +153,34 @@ const ProductDetailCard = ({
             </Grid>
           </Grid>
         </CardContent>
+
+        {/* description show hide handler */}
+        <CardActions>
+          <Grid container justify="center" alignItems="center">
+            <IconButton
+              onClick={handleExpandClick}
+              // clsx default class classes.expand
+              // when expanded = true, class become classes.expandOpen
+              className={clsx(classes.expand, {
+                [classes.expandOpen]: expanded,
+              })}
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </Grid>
+        </CardActions>
+
+        {/* product description info */}
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography paragraph variant="subtitle2">
+              Deskripsi
+            </Typography>
+            <Typography paragraph variant="body2">
+              {description}
+            </Typography>
+          </CardContent>
+        </Collapse>
       </Card>
     </div>
   );
